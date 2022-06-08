@@ -9,21 +9,17 @@ import React, {
 	useEffect,
 	useState,
 } from 'react';
-import { IAuthData } from '@/services/auth/auth.helper';
+import { TypeUser } from '@/services/auth/auth.helper';
 
-interface IContext extends IAuthData {
-	setData: Dispatch<SetStateAction<IAuthData>> | null;
+interface IContext {
+	user: TypeUser;
+	setUser: Dispatch<SetStateAction<TypeUser>> | null;
 }
-
-export const defaultValueAuthState = {
-	user: null,
-	accessToken: '',
-};
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
-	const [data, setData] = useState<IAuthData>(defaultValueAuthState);
+	const [user, setUser] = useState<TypeUser>(null);
 
 	const { pathname } = useRouter();
 
@@ -31,21 +27,20 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 		const accessToken = Cookies.get('accessToken');
 		if (accessToken) {
 			const user = JSON.parse(localStorage.getItem('user') || '');
-
-			setData({ user, accessToken });
+			setUser(user);
 		}
 	}, []);
 
 	useEffect(() => {
 		const accessToken = Cookies.get('accessToken');
-		if (!accessToken && !data.user) {
+		if (!accessToken && !user) {
 			// AuthService.logout()
-			setData(defaultValueAuthState);
+			setUser(null);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]);
 
-	return <AuthContext.Provider value={{ ...data, setData }}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

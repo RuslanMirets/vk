@@ -1,10 +1,12 @@
 import Cookies from 'js-cookie';
 
+export type TypeUser = {
+	id: number;
+	email: string;
+} | null;
+
 export interface IAuthData {
-	user: {
-		id: number;
-		email: string;
-	} | null;
+	user: TypeUser;
 	accessToken: string;
 }
 
