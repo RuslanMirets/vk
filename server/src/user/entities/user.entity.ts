@@ -19,11 +19,14 @@ export class UserEntity {
 	birthDate: string;
 
 	@Column({ type: 'enum', enum: EnumGender })
-	gender: EnumGender;
+	gender: string;
 
 	@Column({ default: false })
 	isVerified: boolean;
 
-	@Column()
+	@Column({ nullable: true })
 	avatarPath: string;
+
+	// @Column()
+	// friends
 }
