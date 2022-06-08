@@ -6,17 +6,19 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
 	imports: [
 		ConfigModule.forRoot(),
+		AuthModule,
+		PassportModule.register({ session: true }),
 		TypeOrmModule.forRootAsync({
 			imports: [ConfigModule],
 			inject: [ConfigService],
 			useFactory: getPostgresConfig,
 		}),
 		UserModule,
-		AuthModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

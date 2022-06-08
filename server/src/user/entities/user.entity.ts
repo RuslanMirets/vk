@@ -27,6 +27,9 @@ export class UserEntity {
 	@Column({ nullable: true })
 	avatarPath: string;
 
+	@Column({ unique: true })
+	googleId: string;
+
 	// @Column()
 	// friends
 }
