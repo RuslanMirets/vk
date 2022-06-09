@@ -8,7 +8,7 @@ type TypePhoto = {
 };
 
 export interface IGoogleProfile {
-	id: number;
+	id: string;
 	displayName: string;
 	name: {
 		familyName: string;
@@ -20,6 +20,7 @@ export interface IGoogleProfile {
 }
 
 export interface IResGoogleUser {
+	// id: string;
 	name: string;
 	email: string;
 	avatarPath: string;

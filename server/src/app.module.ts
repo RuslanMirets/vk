@@ -5,8 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
+import { AuthModule } from './auth/jwt/auth.module';
+import { GoogleAuthModule } from './auth/google/google-auth.module';
 
 @Module({
 	imports: [
@@ -19,6 +20,7 @@ import { PassportModule } from '@nestjs/passport';
 			useFactory: getPostgresConfig,
 		}),
 		UserModule,
+		GoogleAuthModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

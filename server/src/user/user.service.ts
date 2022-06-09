@@ -12,11 +12,11 @@ export class UserService {
 		return await this.repository.find();
 	}
 
-	async findOneById(id: number) {
+	async findOneById(id: string) {
 		return await this.repository.findOneBy({ id: id });
 	}
 
-	async update(id: number, dto: UserDto) {
+	async update(id: string, dto: UserDto) {
 		return await this.repository.update(id, dto);
 	}
 }

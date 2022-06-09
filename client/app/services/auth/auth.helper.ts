@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 
 export type TypeUser = {
-	id: number;
+	id: string;
 	email: string;
 } | null;
 

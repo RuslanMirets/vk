@@ -1,34 +1,34 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { EnumGender } from '../interfaces/user.interface';
 
 @Entity('User')
 export class UserEntity {
-	@PrimaryGeneratedColumn()
-	id: number;
+	// @PrimaryColumn()
+	// id: number;
 
-	@Column()
+	@PrimaryGeneratedColumn()
+	id: string;
+
+	@Column({ nullable: true })
 	name: string;
 
 	@Column({ unique: true })
 	email: string;
 
-	@Column()
+	@Column({ nullable: true })
 	city: string;
 
-	@Column()
+	@Column({ nullable: true })
 	birthDate: string;
 
-	@Column({ type: 'enum', enum: EnumGender })
+	@Column({ type: 'enum', enum: EnumGender, nullable: true })
 	gender: string;
 
 	@Column({ default: false })
 	isVerified: boolean;
 
-	@Column({ nullable: true })
+	@Column()
 	avatarPath: string;
-
-	@Column({ unique: true })
-	googleId: string;
 
 	// @Column()
 	// friends

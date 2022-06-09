@@ -1,7 +1,7 @@
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 import { Body, Controller, Get, Patch, Request } from '@nestjs/common';
-import { AuthGoogle } from 'src/auth/decorators/auth-google.decorator';
+import { AuthGoogle } from 'src/auth/google/auth-google.decorator';
 
 @Controller('user')
 export class UserController {

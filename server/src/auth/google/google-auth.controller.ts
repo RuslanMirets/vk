@@ -1,15 +1,17 @@
 import { Controller, Get, Req } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthGoogle } from './decorators/auth-google.decorator';
-import { Auth } from './decorators/auth.decorator';
+import { Auth } from '../jwt/auth.decorator';
+import { AuthService } from '../jwt/auth.service';
+import { AuthGoogle } from './auth-google.decorator';
 
 @Controller('auth/google')
-export class AuthController {
+export class GoogleAuthController {
 	constructor(private readonly authService: AuthService) {}
 
 	@Get('login')
 	@AuthGoogle()
-	async googleAuth(@Req() req) {}
+	async googleAuth(@Req() req) {
+		return;
+	}
 
 	@Get('redirect')
 	@AuthGoogle()
