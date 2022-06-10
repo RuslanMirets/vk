@@ -10,8 +10,8 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 		<>
 			<Header />
 			<Row gutter={[5, 2]}>
-				{user && <Col span={3}></Col>}
-				<Col span={user ? 9 : 12}>{children}</Col>
+				{user && <Col span={6}></Col>}
+				<Col span={user ? 18 : 24}>{children}</Col>
 			</Row>
 		</>
 	);

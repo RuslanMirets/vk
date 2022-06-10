@@ -1,7 +1,8 @@
 import { NextPage } from 'next';
+import Auth from '@/components/screens/auth/Auth';
 
 const AuthPage: NextPage = () => {
-	return <div>AuthPage</div>;
+	return <Auth />;
 };
 
 export default AuthPage;
