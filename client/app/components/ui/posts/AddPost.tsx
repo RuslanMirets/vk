@@ -8,7 +8,7 @@ const AddPost: FC = () => {
 	const [content, setContent] = useState('');
 	const { user } = useAuth();
 
-	const addPostHandler = async (e: KeyboardEvent<HTMLImageElement>) => {
+	const addPostHandler = async (e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter' && user) {
 			setContent('');
 		}
@@ -18,7 +18,13 @@ const AddPost: FC = () => {
 		<>
 			{error && <Alert message={error} type='error' showIcon />}
 			<Card bodyStyle={{ borderRadius: '10px' }} />
-			<Input placeholder='Расскажи, что у тебя нового' style={{ borderRadius: '25px' }} />
+			<Input
+				placeholder='Расскажи, что у тебя нового'
+				style={{ borderRadius: '25px' }}
+				onKeyPress={addPostHandler}
+				onChange={(e) => setContent(e.target.value)}
+				value={content}
+			/>
 		</>
 	);
 };

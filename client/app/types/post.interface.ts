@@ -1,8 +1,9 @@
 import { IUser } from './user.interface';
 
 export interface IPost {
-	author: IUser;
+	id: number;
+	user: IUser;
 	createdAt: string;
 	content: string;
-	images?: string[];
+	image?: string;
 }
