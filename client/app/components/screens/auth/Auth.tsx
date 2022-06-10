@@ -6,7 +6,7 @@ const Auth: FC = () => {
 
 	const [isReqForm, setIsReqForm] = useState(false);
 
-	return <div>Auth</div>;
+	return <div></div>;
 };
 
 export default Auth;
