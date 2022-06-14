@@ -8,23 +8,27 @@ import { AuthService } from '@/services/auth/auth.service';
 
 const GoogleAuthPage: NextPage = () => {
 	const { query } = useRouter();
-	const code = String(query?.code);
+	const code = query?.code;
 
-	const { mutate } = useMutation('send code token', () => AuthService.loginGoogle(code), {
-		onSuccess() {
-			notification.success({
-				message: 'Auth success',
-			});
+	const { mutate } = useMutation(
+		'send code token',
+		(code: string) => AuthService.loginGoogle(code),
+		{
+			onSuccess() {
+				notification.success({
+					message: 'Auth success',
+				});
+			},
+			onError(error) {
+				notification.error({
+					message: errorCatch(error),
+				});
+			},
 		},
-		onError(error) {
-			notification.error({
-				message: errorCatch(error),
-			});
-		},
-	});
+	);
 
 	useEffect(() => {
-		code && mutate();
+		if (code) mutate(String(code));
 	}, [code, mutate]);
 
 	return (
