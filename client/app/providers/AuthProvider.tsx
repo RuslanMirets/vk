@@ -10,6 +10,7 @@ import React, {
 	useState,
 } from 'react';
 import { TypeUser } from '@/services/auth/auth.helper';
+import { AuthService } from '@/services/auth/auth.service';
 
 interface IContext {
 	user: TypeUser;
@@ -34,7 +35,7 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	useEffect(() => {
 		const accessToken = Cookies.get('accessToken');
 		if (!accessToken && !user) {
-			// AuthService.logout()
+			AuthService.logout();
 			setUser(null);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

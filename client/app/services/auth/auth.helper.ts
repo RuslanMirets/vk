@@ -1,9 +1,7 @@
 import Cookies from 'js-cookie';
+import { IUser } from '@/types/user.interface';
 
-export type TypeUser = {
-	id: string;
-	email: string;
-} | null;
+export type TypeUser = IUser | null;
 
 export interface IAuthData {
 	user: TypeUser;

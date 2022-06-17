@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import '@/assets/styles/globals.scss';
-import Layout from '@/components/layout/Layout';
+import AuthProvider from '@/providers/AuthProvider';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -15,9 +15,9 @@ const queryClient = new QueryClient({
 function App({ Component, pageProps }: AppProps) {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Layout>
+			<AuthProvider>
 				<Component {...pageProps} />
-			</Layout>
+			</AuthProvider>
 		</QueryClientProvider>
 	);
 }

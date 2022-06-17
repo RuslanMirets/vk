@@ -1,10 +1,10 @@
 import { Avatar, Button, Card, Col, Row } from 'antd';
 import { FC } from 'react';
-import { users } from './dataUsers';
 import { useAuth } from '@/hooks/useAuth';
+import { AuthService } from '@/services/auth/auth.service';
 
 const User: FC = () => {
-	const { user } = useAuth();
+	const { user, setUser } = useAuth();
 
 	return (
 		<Card
@@ -18,13 +18,19 @@ const User: FC = () => {
 		>
 			<Row>
 				<Col span={3}>
-					<Avatar src={users[0].avatar} alt='Avatar' />
+					<Avatar src={user?.avatarPath} alt='Avatar' />
 				</Col>
 				<Col span={9}>
-					<div>{users[0].name || 'Без имени'}</div>
+					<div>{user?.name}</div>
 				</Col>
 			</Row>
-			<Button type='dashed' onClick={() => {}}>
+			<Button
+				type='dashed'
+				onClick={() => {
+					AuthService.logout();
+					setUser && setUser(null);
+				}}
+			>
 				Выйти
 			</Button>
 		</Card>

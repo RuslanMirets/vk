@@ -4,20 +4,24 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useMutation } from 'react-query';
+import { useAuth } from '@/hooks/useAuth';
 import { AuthService } from '@/services/auth/auth.service';
 
 const GoogleAuthPage: NextPage = () => {
-	const { query } = useRouter();
+	const { setUser } = useAuth();
+	const { query, push } = useRouter();
 	const code = query?.code;
 
 	const { mutate } = useMutation(
 		'send code token',
 		(code: string) => AuthService.loginGoogle(code),
 		{
-			onSuccess() {
+			async onSuccess(user) {
 				notification.success({
 					message: 'Auth success',
 				});
+				setUser && setUser(user);
+				await push('/');
 			},
 			onError(error) {
 				notification.error({
